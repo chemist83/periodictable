@@ -294,14 +294,12 @@ function drawBohrModel(element) {
 
     
 
-    // Merkez koordinatları dinamik boyuta göre ayarla
-
+    
     const nucleusCenterX = dynamicModelSize / 2;
 
     const nucleusCenterY = dynamicModelSize / 2;
 
-    // SVG etiketini dinamik boyutlarla güncelle
-
+    
     let svgHTML = `<svg width="${dynamicModelSize}" height="${dynamicModelSize}" viewBox="0 0 ${dynamicModelSize} ${dynamicModelSize}">`;
 
     // Nucleus: Neutrons and Protons (randomized slightly for better visual spread)
@@ -340,7 +338,7 @@ function drawBohrModel(element) {
 
     element.electrons.forEach((electronCount, layerIndex) => {
 
-        // Yörünge yarıçapını dinamik aralığa göre hesapla
+        
 
         const orbitRadius = nucleusRadius + (layerIndex + 1) * dynamicLayerSpacing;
 
@@ -401,5 +399,8 @@ function drawBohrModel(element) {
     return svgHTML;
 
 }
+function goToPage2() {
 
-              
+            window.location.href = "sayfa2.html"; 
+
+}
