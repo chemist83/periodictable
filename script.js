@@ -257,5 +257,5 @@ function drawBohrModel(element) {
 }
 
 function goToPage2() {
-    window.location.href = "sayfa2.html"; 
+    window.location.href = "https://chemist83.github.io/cheminformerSK4/"; 
           }
