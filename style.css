@@ -385,3 +385,48 @@ h1 {
         orbit var(--orbit-speed) linear infinite, 
         glow 1.5s ease-in-out infinite alternate; /* Glow and orbit animations active */
     }
+/* Reklam Bandı (Üst) */
+#sticky-ad-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #d1ecf1; /* Arka plan rengi */
+    color: #0c5460; /* Yazı rengi */
+    padding: 10px 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Diğer elementlerin üzerinde görünmesini sağlar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+    height: 50px; /* Bandın yüksekliği */
+    box-sizing: border-box;
+}
+
+#sticky-ad-top p {
+    margin: 0;
+    flex-grow: 1;
+}
+
+#sticky-ad-top a {
+    color: #0c5460; /* Bağlantı rengi */
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#close-sticky-ad-top {
+    background: none;
+    border: none;
+    color: #0c5460; /* Kapatma butonu rengi */
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-left: 15px;
+    padding: 0 5px;
+    line-height: 1;
+}
+
+#close-sticky-ad-top:hover {
+    color: #1a717e; /* Kapatma butonu hover rengi */
+    }
