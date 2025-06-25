@@ -259,3 +259,11 @@ function drawBohrModel(element) {
 function goToPage2() {
     window.location.href = "https://chemist83.github.io/cheminformerSK4/"; 
           }
+const closeStickyAdButtonTop = document.getElementById('close-sticky-ad-top');
+const stickyAdTop = document.getElementById('sticky-ad-top');
+
+if (closeStickyAdButtonTop && stickyAdTop) {
+    closeStickyAdButtonTop.addEventListener('click', () => {
+        stickyAdTop.style.display = 'none'; // Bandı gizle
+    });
+}
