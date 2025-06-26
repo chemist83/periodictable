@@ -227,7 +227,7 @@ function drawBohrModel(element) {
         const orbitRadius = nucleusRadius + (layerIndex + 1) * dynamicLayerSpacing;
         
         // Orbit path
-        svgHTML += `<circle cx="${nucleusCenterX}" cy="${nucleusCenterY}" r="${orbitRadius}" fill="none" stroke="#aaa" stroke-width="1" stroke-dasharray="2 2" class="orbit-path"></circle>`;
+        svgHTML += `<circle cx="${nucleusCenterX}" cy="${nucleusCenterY}" r="${orbitRadius}" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="2 2" class="orbit-path"></circle>`;
         
         // Electrons in each layer
         for (let i = 0; i < electronCount; i++) {
