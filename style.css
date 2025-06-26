@@ -43,7 +43,7 @@ h1 {
     padding: 5px;
     text-align: center;
     cursor: pointer;
-    background-color: #f0f0f0;
+    background-color: #5ff216;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
     display: flex;
     flex-direction: column;
