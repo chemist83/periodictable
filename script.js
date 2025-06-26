@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Zn": { atomicNumber: 30, name: "Zinc", symbol: "Zn", protons: 30, neutrons: 35, electrons: [2, 8, 18, 2], charge: "0", feature: "Used in galvanizing steel and in brass", type: "transition-metal" }, // Transition Metal
         "Ga": { atomicNumber: 31, name: "Gallium", symbol: "Ga", protons: 31, neutrons: 39, electrons: [2, 8, 18, 3], charge: "0", feature: "Melts near room temperature, used in semiconductors", type: "post-transition-metal" }, // Post-transition Metal
         "Ge": { atomicNumber: 32, name: "Germanium", symbol: "Ge", protons: 32, neutrons: 41, electrons: [2, 8, 18, 4], charge: "0", feature: "Used in semiconductors and fiber optics", type: "metalloid" }, // Metalloid
-        "As": { atomicNumber: 33, name: "Arsenic", symbol: "As", protons: 33, neutrons: 42, electrons: [2, 8, 18, 5], charge: "0", feature: "Highly toxic, used in some pesticides and semiconductors", type: "metalloid" }, // Metalloid
+        "As": { atomicNumber: 33, name: "Arsenic", symbol: "As", protons: 33, neutrons: 42, electrons: [2, 8, 18, 5], charge: "0", feature: "Used in some pesticides and semiconductors (toxic)", type: "metalloid" }, // Metalloid
         "Se": { atomicNumber: 34, name: "Selenium", symbol: "Se", protons: 34, neutrons: 45, electrons: [2, 8, 18, 6], charge: "0", feature: "Used in photocells and toners", type: "nonmetal" }, // Nonmetal
         "Br": { atomicNumber: 35, name: "Bromine", symbol: "Br", protons: 35, neutrons: 45, electrons: [2, 8, 18, 7], charge: "0", feature: "Liquid at room temperature, used in flame retardants", type: "halogen" }, // Halogen
         "Kr": { atomicNumber: 36, name: "Krypton", symbol: "Kr", protons: 36, neutrons: 48, electrons: [2, 8, 18, 8], charge: "0", feature: "Used in flash lamps and lasers", type: "noble-gas" }, // Noble Gas
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Fr": { atomicNumber: 87, name: "Francium", symbol: "Fr", protons: 87, neutrons: 136, electrons: [2, 8, 18, 32, 18, 8, 1], charge: "0", feature: "Most unstable naturally occurring element", type: "alkali-metal" }, // Alkali Metal
         "Ra": { atomicNumber: 88, name: "Radium", symbol: "Ra", protons: 88, neutrons: 138, electrons: [2, 8, 18, 32, 18, 8, 2], charge: "0", feature: "Highly radioactive, once used in luminous paints", type: "alkaline-earth-metal" }, // Alkaline Earth Metal
         "Ac": { atomicNumber: 89, name: "Actinium", symbol: "Ac", protons: 89, neutrons: 138, electrons: [2, 8, 18, 32, 18, 9, 2], charge: "0", feature: "Highly radioactive, used as a neutron source", type: "actinide" }, // Actinide
-        "Th": { atomicNumber: 90, name: "Thorium", symbol: "Th", protons: 90, neutrons: 142, electrons: [2, 8, 18, 32, 18, 10, 2], charge: "0", feature: "Radioactive, potential nuclear fuel", type: "actinide" }, // Actinide
+        "Th": { atomicNumber: 90, name: "Thorium", symbol: "Th", protons: 90, neutrons: 142, electrons: [2, 8, 18, 10, 2], charge: "0", feature: "Radioactive, potential nuclear fuel", type: "actinide" }, // Actinide
         "Pa": { atomicNumber: 91, name: "Protactinium", symbol: "Pa", protons: 91, neutrons: 140, electrons: [2, 8, 18, 32, 20, 9, 2], charge: "0", feature: "Highly radioactive and toxic", type: "actinide" }, // Actinide
         "U": { atomicNumber: 92, name: "Uranium", symbol: "U", protons: 92, neutrons: 146, electrons: [2, 8, 18, 32, 21, 9, 2], charge: "0", feature: "Used as nuclear fuel and in weapons", type: "actinide" }, // Actinide
         "Np": { atomicNumber: 93, name: "Neptunium", symbol: "Np", protons: 93, neutrons: 144, electrons: [2, 8, 18, 32, 22, 9, 2], charge: "0", feature: "Radioactive, byproduct in nuclear reactors", type: "actinide" }, // Actinide
@@ -117,8 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
         "Fl": { atomicNumber: 114, name: "Flerovium", symbol: "Fl", protons: 114, neutrons: 173, electrons: [2, 8, 18, 32, 32, 18, 4], charge: "0", feature: "Synthetic, highly radioactive", type: "post-transition-metal" }, // Post-transition Metal
         "Mc": { atomicNumber: 115, name: "Moscovium", symbol: "Mc", protons: 115, neutrons: 174, electrons: [2, 8, 18, 32, 32, 18, 5], charge: "0", feature: "Synthetic, highly radioactive", type: "post-transition-metal" }, // Post-transition Metal
         "Lv": { atomicNumber: 116, name: "Livermorium", symbol: "Lv", protons: 116, neutrons: 177, electrons: [2, 8, 18, 32, 32, 18, 6], charge: "0", feature: "Synthetic, highly radioactive", type: "post-transition-metal" }, // Post-transition Metal
-        "Ts": { atomicNumber: 117, name: "Tennessine", symbol: "Ts", protons: 117, neutrons: 177, electrons: [2, 8, 18, 32, 32, 18, 7], charge: "0", feature: "Synthetic, highly radioactive", type: "halogen" }, // Halogen
-        "Og": { atomicNumber: 118, name: "Oganesson", symbol: "Og", protons: 118, neutrons: 176, electrons: [2, 8, 18, 32, 32, 18, 8], charge: "0", feature: "Synthetic, highly radioactive, noble gas", type: "noble-gas" } // Noble Gas
+        "Ts": { atomicNumber: 117, name: "Tennessine", symbol: "Ts", protons: 117, neutrons: 177, electrons: [2, 8, 18, 32, 18, 7], charge: "0", feature: "Synthetic, highly radioactive", type: "halogen" }, // Halogen
+        "Og": { atomicNumber: 118, name: "Oganesson", symbol: "Og", protons: 118, neutrons: 176, electrons: [2, 8, 18, 32, 18, 8], charge: "0", feature: "Synthetic, highly radioactive, noble gas", type: "noble-gas" } // Noble Gas
     };
 
     const elementDivs = document.querySelectorAll('.element');
@@ -129,6 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
     closeButton.innerHTML = '&times;';
     closeButton.addEventListener('click', () => {
         elementDetailsDiv.style.display = 'none';
+        // Animasyonları durdurmak için Bohr modelini temizle
+        const bohrModelContainer = elementDetailsDiv.querySelector('.bohr-model-container');
+        if (bohrModelContainer) {
+            bohrModelContainer.innerHTML = '';
+        }
     });
     elementDetailsDiv.appendChild(closeButton);
 
@@ -188,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const bohrModelContainer = document.createElement('div');
         bohrModelContainer.classList.add('bohr-model-container');
         elementDetailsDiv.appendChild(bohrModelContainer);
-        drawBohrModel(element, bohrModelContainer);
+        drawBohrModel(element, bohrModelContainer); // Pass the container to the draw function
 
         elementDetailsDiv.style.display = 'block';
     }
@@ -201,39 +206,47 @@ document.addEventListener('DOMContentLoaded', () => {
         nucleus.textContent = element.protons; // Show proton count in nucleus
         container.appendChild(nucleus);
 
-        const maxShellSize = 200; // Max size for the outermost shell
-        const shellSpacing = 20; // Spacing between shells
+        const shellSpacing = 25; // Spacing between shells
+        let currentRadius = 15; // Initial radius for the first shell (half of nucleus width + some gap)
 
         element.electrons.forEach((numElectrons, shellIndex) => {
+            if (numElectrons === 0) return; // Boş kabukları çizme
+
             const shell = document.createElement('div');
             shell.classList.add('shell');
 
-            // Calculate shell size dynamically
-            const shellSize = (shellIndex + 1) * shellSpacing * 2 + 30; // Nucleus size (30) + spacing
-            shell.style.width = `${shellSize}px`;
-            shell.style.height = `${shellSize}px`;
-            shell.style.zIndex = shellIndex; // Inner shells are behind outer shells
+            // Set shell size
+            const shellDiameter = currentRadius * 2;
+            shell.style.width = `${shellDiameter}px`;
+            shell.style.height = `${shellDiameter}px`;
+            shell.style.zIndex = shellIndex + 1; // Daha dıştaki kabuklar üstte görünür
+
+            // Define custom property for electron radius
+            shell.style.setProperty('--electron-radius', `${currentRadius}px`);
 
             // Position electrons on the shell
             for (let i = 0; i < numElectrons; i++) {
                 const electron = document.createElement('div');
                 electron.classList.add('electron');
 
-                const angle = (i / numElectrons) * 2 * Math.PI;
-                // Calculate position relative to the center of the shell
-                // Subtract 4 (half electron width) to center the electron on the shell
-                const electronX = (shellSize / 2 - 4) * Math.cos(angle);
-                const electronY = (shellSize / 2 - 4) * Math.sin(angle);
+                // Her elektrona farklı bir başlangıç açısı ve animasyon gecikmesi ver
+                const startAngle = (i / numElectrons) * 360;
+                const animationDuration = 5 + (shellIndex * 1); // Dış kabuklar daha yavaş dönsün
+                const animationDelay = (i / numElectrons) * animationDuration; // Her elektron farklı zamanda başlasın
 
-                electron.style.transform = `translate(${electronX}px, ${electronY}px)`;
+                electron.style.animation = `rotate ${animationDuration}s linear infinite`;
+                electron.style.animationDelay = `-${animationDelay}s`; // Negatif gecikme ile farklı başlangıç pozisyonları
+
+                // Transform property will be handled by the rotate animation
                 shell.appendChild(electron);
             }
             container.appendChild(shell);
+
+            currentRadius += shellSpacing; // Bir sonraki kabuk için yarıçapı artır
         });
 
-        // Adjust container size to fit the outermost shell
-        const lastShellIndex = element.electrons.length - 1;
-        const finalContainerSize = (lastShellIndex + 1) * shellSpacing * 2 + 30 + 10; // Add some margin
+        // Bohr model container boyutunu son kabuğa göre ayarla
+        const finalContainerSize = currentRadius * 2 + 20; // Son yarıçap * 2 + ek boşluk
         container.style.width = `${finalContainerSize}px`;
         container.style.height = `${finalContainerSize}px`;
     }
