@@ -196,7 +196,7 @@ h1 {
 /* Lanthanoids and Actinoids block */
 
 .lanthanoids-placeholder {
-    background-color: #00fffb; /* Açık sarı renk */
+    background-color: #d000ff; /* Açık sarı renk */
     border: 1px dashed #d4b45a; /* Kesikli sınır */
     font-size: 0.8em;
     display: flex;
