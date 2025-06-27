@@ -306,12 +306,13 @@ li {
 }
 
 /* Bohr Model Styling */
+/* Bohr Model Styling */
 .bohr-model-container {
     width: 300px; /* Base size */
     height: 300px; /* Base size */
     margin: 20px auto;
     position: relative;
-    border: 1px dashed #ccc; /* For visualization, can remove in final */
+    /* border: 1px dashed #ccc; /* Bu satırı silin veya yorumlayın */
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -331,11 +332,14 @@ li {
     fill: green;
 }
 
+/* orbit-path sınıfının tamamını silin veya yorumlayın */
+/*
 .orbit-path {
     stroke: #888;
     stroke-width: 1;
     fill: none;
 }
+*/
 
 .electron {
     fill: darkblue;
