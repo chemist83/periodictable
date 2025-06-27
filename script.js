@@ -139,12 +139,12 @@ elementDivs.forEach(elementDiv => {
         elementDiv.addEventListener('click', () => {
             displayElementDetails(element);
         });
-    } else {
-        // If an element div exists in HTML but no data in JS, it won't be clickable
-        // Or you can add a fallback click handler for unknown elements
+    } else if (elementDiv.classList.contains('lanthanoids-placeholder') || elementDiv.classList.contains('actinoids-placeholder')) {
+        // Handle placeholders, they don't have detailed data but might need a click action
+        elementDiv.setAttribute('data-type', 'placeholder'); // Special type for placeholders
         elementDiv.addEventListener('click', () => {
-            elementDetailsDiv.style.display = 'none';
-            alert(`Sorry, details for ${elementSymbol} are not yet added.`);
+            elementDetailsDiv.style.display = 'none'; // Close any open details
+            alert("Bu element grubu için detaylar henüz mevcut değil."); // Inform user
         });
     }
 });
@@ -177,9 +177,10 @@ function displayElementDetails(element) {
     const bohrContainer = elementDetailsDiv.querySelector('.bohr-model-container');
     if (bohrContainer) {
         const numberOfLayers = element.electrons.length;
-        const baseModelSize = 350;
-        const sizeIncrementPerLayer = 50;
-        const dynamicModelSize = baseModelSize + (Math.max(0, numberOfLayers - 2) * sizeIncrementPerLayer);
+        // Adjust these values if needed for better scaling
+        const baseModelSize = 300; // Base size for elements with few layers
+        const sizeIncrementPerLayer = 40; // Pixels to add for each additional layer
+        const dynamicModelSize = baseModelSize + (Math.max(0, numberOfLayers - 1) * sizeIncrementPerLayer); // Start incrementing from 1 layer
         bohrContainer.style.width = `${dynamicModelSize}px`;
         bohrContainer.style.height = `${dynamicModelSize}px`;
     }
@@ -188,45 +189,46 @@ function displayElementDetails(element) {
 function drawBohrModel(element) {
     const numberOfLayers = element.electrons.length;
 
-    // Calculate dynamic model size based on number of layers
-    const baseModelSize = 350; // Base size for elements with few layers
-    const sizeIncrementPerLayer = 50; // Pixels to add for each additional layer
-    const dynamicModelSize = baseModelSize + (Math.max(0, numberOfLayers - 2) * sizeIncrementPerLayer);
+    const baseModelSize = 300;
+    const sizeIncrementPerLayer = 40;
+    const dynamicModelSize = baseModelSize + (Math.max(0, numberOfLayers - 1) * sizeIncrementPerLayer);
 
-    // Adjust layer spacing dynamically
-    const baseLayerSpacing = 30; // Initial spacing for first few layers
-    const spacingDecrementPerLayer = 2; // Reduce spacing for each additional layer
-    const dynamicLayerSpacing = Math.max(10, baseLayerSpacing - (Math.max(0, numberOfLayers - 1) * spacingDecrementPerLayer));
-
-    const nucleusRadius = 30;
-    const particleRadius = 6;
-    const electronRadius = 7;
+    const nucleusRadius = 25; // Smaller nucleus
+    const particleRadius = 5; // Smaller particles
+    const electronRadius = 6; // Smaller electrons
 
     const nucleusCenterX = dynamicModelSize / 2;
     const nucleusCenterY = dynamicModelSize / 2;
 
     let svgHTML = `<svg width="${dynamicModelSize}" height="${dynamicModelSize}" viewBox="0 0 ${dynamicModelSize} ${dynamicModelSize}">`;
 
-    // Nucleus: Neutrons and Protons (randomized slightly for better visual spread)
-    const minParticleDistance = particleRadius * 0.8;
+    // Nucleus: Neutrons and Protons (fixed, no animation)
+    // Draw protons
     for (let i = 0; i < element.protons; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const radius = minParticleDistance + Math.random() * (nucleusRadius - minParticleDistance - particleRadius);
-        const x = nucleusCenterX + radius * Math.cos(angle);
-        const y = nucleusCenterY + radius * Math.sin(angle);
-        svgHTML += `<circle cx="${x}" cy="${y}" r="${particleRadius}" fill="red" class="proton"></circle>`;
+        // Distribute protons in a small circle around the center
+        const angle = (2 * Math.PI / element.protons) * i;
+        const x = nucleusCenterX + (nucleusRadius / 2) * Math.cos(angle);
+        const y = nucleusCenterY + (nucleusRadius / 2) * Math.sin(angle);
+        svgHTML += `<circle cx="${x}" cy="${y}" r="${particleRadius}" fill="red"></circle>`;
     }
+    // Draw neutrons
     for (let i = 0; i < element.neutrons; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const radius = minParticleDistance + Math.random() * (nucleusRadius - minParticleDistance - particleRadius);
-        const x = nucleusCenterX + radius * Math.cos(angle);
-        const y = nucleusCenterY + radius * Math.sin(angle);
-        svgHTML += `<circle cx="${x}" cy="${y}" r="${particleRadius}" fill="green" class="neutron"></circle>`;
+        // Distribute neutrons in a slightly larger circle or intersperse
+        const angle = (2 * Math.PI / element.neutrons) * i + Math.PI / element.neutrons; // Offset for interspersing
+        const x = nucleusCenterX + (nucleusRadius / 2 + particleRadius) * Math.cos(angle);
+        const y = nucleusCenterY + (nucleusRadius / 2 + particleRadius) * Math.sin(angle);
+        svgHTML += `<circle cx="${x}" cy="${y}" r="${particleRadius}" fill="green"></circle>`;
+    }
+    // Ensure a central point for nucleus if few particles
+    if (element.protons === 0 && element.neutrons === 0) {
+        svgHTML += `<circle cx="${nucleusCenterX}" cy="${nucleusCenterY}" r="${nucleusRadius / 2}" fill="gray"></circle>`;
     }
 
-    // Electron Layers and Electrons
+
+    // Electron Layers and Electrons (with animation)
     element.electrons.forEach((electronCount, layerIndex) => {
-        const orbitRadius = nucleusRadius + (layerIndex + 1) * dynamicLayerSpacing;
+        // Calculate orbit radius based on layer index and dynamic size
+        const orbitRadius = nucleusRadius + 30 + (layerIndex * (dynamicModelSize / (numberOfLayers * 2.5))); // Adjust spacing based on total layers and model size
 
         // Orbit path
         svgHTML += `<circle cx="${nucleusCenterX}" cy="${nucleusCenterY}" r="${orbitRadius}" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="2 2" class="orbit-path"></circle>`;
@@ -235,11 +237,12 @@ function drawBohrModel(element) {
         for (let i = 0; i < electronCount; i++) {
             const angleDeg = (360 / electronCount) * i;
             const angleRad = (angleDeg * Math.PI) / 180;
+            // Initial position (will be animated by CSS)
             const electronX = nucleusCenterX + orbitRadius * Math.cos(angleRad);
             const electronY = nucleusCenterY + orbitRadius * Math.sin(angleRad);
 
-            // Speed adjustment: Inner layers typically faster, outer layers slower
-            const orbitSpeed = (3 - (layerIndex * 0.2)) + 's';
+            // Speed adjustment: Outer layers typically slower
+            const orbitSpeed = (3 + (layerIndex * 0.5)) + 's'; // Slower for outer layers
             svgHTML += `
                 <circle
                     cx="${electronX}"
@@ -257,15 +260,16 @@ function drawBohrModel(element) {
     return svgHTML;
 }
 
+// Global functions for buttons
 function goToPage2() {
     window.location.href = "https://chemist83.github.io/cheminformerSK4/";
 }
 
-// Function for the new "Isotopes" button
 function goToPage3() {
-    window.location.href = "isotopes.html"; // You need to create this file
+    window.location.href = "isotopes.html"; // Ensure isotopes.html exists or update this path
 }
 
+// Sticky ad close functionality
 const closeStickyAdButtonTop = document.getElementById('close-sticky-ad-top');
 const stickyAdTop = document.getElementById('sticky-ad-top');
 
@@ -273,4 +277,4 @@ if (closeStickyAdButtonTop && stickyAdTop) {
     closeStickyAdButtonTop.addEventListener('click', () => {
         stickyAdTop.style.display = 'none';
     });
-        }
+    }
