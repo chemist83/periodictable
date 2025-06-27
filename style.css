@@ -84,7 +84,7 @@ li {
     width: 100%;
 }
 
-/* Positioning for the main periodic table */
+/* Positioning for the main periodic table (copied from your original) */
 [data-period="1"][data-group="1"] { grid-row: 1; grid-column: 1; }
 [data-period="1"][data-group="18"] { grid-row: 1; grid-column: 18; }
 
@@ -147,7 +147,7 @@ li {
 [data-period="6"][data-group="1"] { grid-row: 6; grid-column: 1; }
 [data-period="6"][data-group="2"] { grid-row: 6; grid-column: 2; }
 /* Lanthanoids placeholder */
-.lanthanoids-placeholder { grid-row: 6; grid-column: 3; background-color: #f7d794; } /* Sarımtrak renk */
+.lanthanoids-placeholder { grid-row: 6; grid-column: 3; } /* Position as before, color handled by data-type */
 [data-period="6"][data-group="4"] { grid-row: 6; grid-column: 4; }
 [data-period="6"][data-group="5"] { grid-row: 6; grid-column: 5; }
 [data-period="6"][data-group="6"] { grid-row: 6; grid-column: 6; }
@@ -167,7 +167,7 @@ li {
 [data-period="7"][data-group="1"] { grid-row: 7; grid-column: 1; }
 [data-period="7"][data-group="2"] { grid-row: 7; grid-column: 2; }
 /* Actinoids placeholder */
-.actinoids-placeholder { grid-row: 7; grid-column: 3; background-color: #f7d794; } /* Sarımtrak renk */
+.actinoids-placeholder { grid-row: 7; grid-column: 3; } /* Position as before, color handled by data-type */
 [data-period="7"][data-group="4"] { grid-row: 7; grid-column: 4; }
 [data-period="7"][data-group="5"] { grid-row: 7; grid-column: 5; }
 [data-period="7"][data-group="6"] { grid-row: 7; grid-column: 6; }
@@ -232,18 +232,25 @@ li {
 
 /* Element type specific colors */
 .element[data-type="metal"] {
-    background-color: #d4edda; /* Açık yeşil */
-    border-color: #28a745;
+    background-color: #fce2a3; /* Açık turuncu/sarı */
+    border-color: #f7a800;
 }
 
 .element[data-type="nonmetal"] {
-    background-color: #ffeeba; /* Açık sarı */
-    border-color: #ffc107;
+    background-color: #a3e0f7; /* Açık mavi */
+    border-color: #007bff;
 }
 
 .element[data-type="metalloid"] {
-    background-color: #f8d7da; /* Açık kırmızı */
-    border-color: #dc3545;
+    background-color: #c4a3f7; /* Açık mor */
+    border-color: #6a0dad;
+}
+
+.element[data-type="placeholder"] {
+    background-color: #f7d794; /* Lantanit/Aktinit için sarımsı ton */
+    border-color: #e0b04c;
+    font-size: 0.8em;
+    font-weight: bold;
 }
 
 
@@ -300,11 +307,11 @@ li {
 
 /* Bohr Model Styling */
 .bohr-model-container {
-    width: 350px; /* Base size */
-    height: 350px; /* Base size */
+    width: 300px; /* Base size */
+    height: 300px; /* Base size */
     margin: 20px auto;
     position: relative;
-    border: 1px dashed #ccc; /* For visualization */
+    border: 1px dashed #ccc; /* For visualization, can remove in final */
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -312,28 +319,16 @@ li {
 }
 
 .bohr-model-container svg {
-    overflow: visible; /* Allow elements to extend beyond SVG bounds if necessary for animations */
+    overflow: visible;
 }
 
-.bohr-model-container .nucleus {
-    fill: #f44336; /* Red for nucleus */
-}
-
+/* No animation for proton/neutron */
 .bohr-model-container .proton {
-    animation: pulse 1s infinite alternate; /* Simple animation */
+    fill: red;
 }
 
 .bohr-model-container .neutron {
-    animation: pulse 1s infinite alternate reverse;
-}
-
-@keyframes pulse {
-    from {
-        transform: scale(0.9);
-    }
-    to {
-        transform: scale(1.1);
-    }
+    fill: green;
 }
 
 .orbit-path {
@@ -343,11 +338,12 @@ li {
 }
 
 .electron {
-    fill: #0056b3; /* Dark blue for electrons */
+    fill: darkblue;
     animation: electron-orbit var(--orbit-speed) linear infinite;
     transform-origin: center center;
 }
 
+/* Electron animation keyframes */
 @keyframes electron-orbit {
     from {
         transform: rotate(var(--start-angle)) translateX(var(--orbit-radius)) rotate(-var(--start-angle));
@@ -458,4 +454,4 @@ li {
     margin-top: 20px;
     font-size: 0.9em;
     color: #bbb;
-}
+                                   }
