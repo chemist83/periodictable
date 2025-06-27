@@ -1,6 +1,6 @@
 // Data for all 118 elements
 const elementsData = {
-    "H": { atomicNumber: 1, name: "Hydrogen", symbol: "H", protons: 1, neutrons: 0, electrons: [1], charge: "0", feature: "It is lighest element in the universe" },
+    "H": { atomicNumber: 1, name: "Hydrogen", symbol: "H", protons: 1, neutrons: 0, electrons: [1], charge: "0", feature: "It is lighest element in the universe", isotopes["Tritium(p:1 n:2)", "Deuterium(p:1 n:1)"]},
     "He": { atomicNumber: 2, name: "Helium", symbol: "He", protons: 2, neutrons: 2, electrons: [2], charge: "0", feature: "Used in balloons and cryogenics" },
     "Li": { atomicNumber: 3, name: "Lithium", symbol: "Li", protons: 3, neutrons: 4, electrons: [2, 1], charge: "0", feature: "It is used in batteries" },
     "Be": { atomicNumber: 4, name: "Beryllium", symbol: "Be", protons: 4, neutrons: 5, electrons: [2, 2], charge: "0", feature: "Used in alloys for strength and lightness" },
@@ -157,6 +157,7 @@ function displayElementDetails(element) {
         <p><strong>Neutron Count:</strong> ${element.neutrons}</p>
         <p><strong>Nuclear Charge:</strong> ${element.charge}</p>
         <p><strong>Electron Configuration:</strong> ${element.electrons.join(', ')}</p>
+        <p><strong>Isotopes:</strong> ${element.isotopes.join(', ')}</p>
         ${element.feature ? `<p><strong>Feature:</strong> ${element.feature}</p>` : ''}
         <h3>Bohr Atom Model:</h3>
         <div class="bohr-model-container">
