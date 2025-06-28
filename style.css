@@ -35,7 +35,7 @@ li {
     grid-template-rows: repeat(9, 60px);
     gap: 5px;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #5bc960;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 1150px; /* Genişliği sınırlayın */
