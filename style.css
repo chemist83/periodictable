@@ -35,7 +35,7 @@ li {
     grid-template-rows: repeat(9, 60px);
     gap: 5px;
     padding: 20px;
-    background-color: #5bc960;
+    background-color: #ffffc9;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 1150px; /* Genişliği sınırlayın */
@@ -232,8 +232,8 @@ li {
 
 /* Element type specific colors */
 .element[data-type="metal"] {
-    background-color: #fce2a3; /* Açık turuncu/sarı */
-    border-color: #f7a800;
+    background-color: #ff8585; /* Açık turuncu/sarı */
+    border-color: #ff0000;
 }
 
 .element[data-type="nonmetal"] {
