@@ -232,7 +232,7 @@ li {
 
 /* Element type specific colors */
 .element[data-type="metal"] {
-    background-color: #ff8585; /* Açık turuncu/sarı */
+    background-color: #e80000; /* Açık turuncu/sarı */
     border-color: #ff0000;
 }
 
@@ -248,7 +248,7 @@ li {
 
 .element[data-type="placeholder"] {
     background-color: #f7d794; /* Lantanit/Aktinit için sarımsı ton */
-    border-color: #e0b04c;
+    border-color: #03ff0b;
     font-size: 0.8em;
     font-weight: bold;
 }
