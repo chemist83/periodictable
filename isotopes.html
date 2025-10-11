@@ -1,10 +1,175 @@
-<html>
-<head></head>
-<body>
-<h2><i>The site is currently improving. You will be able to use this feature 😊. We will implement soon</i></h2>
-  
-  
-</body>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element İzotopları Keşif Aracı (1-20)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Inter font for modern look */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for better look in dark mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111827; /* bg-gray-900 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151; /* bg-gray-700 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563; /* bg-gray-600 */
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen p-4 sm:p-8">
 
-  
+    <!-- Ana Konteyner -->
+    <div class="max-w-7xl mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-indigo-400 mb-2">
+                Element İzotopları Keşif Aracı
+            </h1>
+            <p class="text-lg text-gray-400">İlk 20 Element (Hidrojen'den Kalsiyum'a)</p>
+        </header>
+
+        <!-- Ana Bölüm (Element Listesi ve Detay Paneli) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- 1. Element Listesi (Sol/Üst) -->
+            <div class="lg:col-span-1 bg-gray-800 rounded-xl shadow-2xl p-6 h-fit max-h-[80vh] overflow-y-auto">
+                <h2 class="text-2xl font-semibold mb-4 border-b border-gray-700 pb-2 text-white">Elementler (Z=1'den Z=20'ye)</h2>
+                <div id="element-list" class="space-y-2">
+                    <!-- Element kartları buraya JS ile yüklenecek -->
+                </div>
+            </div>
+
+            <!-- 2. Detay Paneli (Sağ/Alt) -->
+            <div id="detail-panel" class="lg:col-span-2 bg-gray-800 rounded-xl shadow-2xl p-8 sticky top-4 min-h-[40vh] flex items-center justify-center">
+                <div id="detail-content" class="w-full">
+                    <p class="text-xl text-gray-400 text-center animate-pulse">
+                        Listeden bir element seçerek detaylı izotop bilgilerini görüntüleyin.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Element verisi: Kullanıcının sağladığı verileri temizleyip yapılandırılmış hale getiriyoruz.
+        const elementsData = [
+            { Z: 1, name: "Hidrojen", symbol: "H", isotopes: ["¹H (protium)", "²H (döteryum)", "³H (trityum)"] },
+            { Z: 2, name: "Helyum", symbol: "He", isotopes: ["³He", "⁴He", "⁵He", "⁶He", "⁷He", "⁸He"] },
+            { Z: 3, name: "Lityum", symbol: "Li", isotopes: ["⁴Li", "⁵Li", "⁶Li", "⁷Li", "⁸Li", "⁹Li", "¹⁰Li", "¹¹Li"] },
+            { Z: 4, name: "Berilyum", symbol: "Be", isotopes: ["⁵Be", "⁶Be", "⁷Be", "⁸Be", "⁹Be", "¹⁰Be", "¹¹Be", "¹²Be"] },
+            { Z: 5, name: "Bor", symbol: "B", isotopes: ["⁸B", "⁹B", "¹⁰B", "¹¹B", "¹²B", "¹³B", "¹⁴B", "¹⁵B", "¹⁶B", "¹⁷B", "¹⁸B", "¹⁹B"] },
+            { Z: 6, name: "Karbon", symbol: "C", isotopes: ["⁸C", "⁹C", "¹⁰C", "¹¹C", "¹²C", "¹³C", "¹⁴C", "¹⁵C", "¹⁶C", "¹⁷C", "¹⁸C", "¹⁹C", "²⁰C", "²¹C", "²²C"] },
+            { Z: 7, name: "Azot", symbol: "N", isotopes: ["¹¹N", "¹²N", "¹³N", "¹⁴N", "¹⁵N", "¹⁶N", "¹⁷N", "¹⁸N", "¹⁹N", "²⁰N", "²¹N", "²²N", "²³N", "²⁴N"] },
+            { Z: 8, name: "Oksijen", symbol: "O", isotopes: ["¹²O", "¹³O", "¹⁴O", "¹⁵O", "¹⁶O", "¹⁷O", "¹⁸O", "¹⁹O", "²⁰O", "²¹O", "²²O", "²³O", "²⁴O"] },
+            { Z: 9, name: "Flor", symbol: "F", isotopes: ["¹⁴F", "¹⁵F", "¹⁶F", "¹⁷F", "¹⁸F", "¹⁹F", "²⁰F", "²¹F", "²²F", "²³F", "²⁴F", "²⁵F", "²⁶F", "²⁷F", "²⁸F", "²⁹F", "³⁰F", "³¹F"] },
+            { Z: 10, name: "Neon", symbol: "Ne", isotopes: ["¹⁷Ne", "¹⁸Ne", "¹⁹Ne", "²⁰Ne", "²¹Ne", "²²Ne", "²³Ne", "²⁴Ne", "²⁵Ne", "²⁶Ne", "²⁷Ne", "²⁸Ne", "²⁹Ne", "³⁰Ne", "³¹Ne", "³²Ne", "³³Ne", "³⁴Ne"] },
+            { Z: 11, name: "Sodyum", symbol: "Na", isotopes: ["¹⁸Na", "¹⁹Na", "²⁰Na", "²¹Na", "²²Na", "²³Na", "²⁴Na", "²⁵Na", "²⁶Na", "²⁷Na", "²⁸Na", "²⁹Na", "³⁰Na", "³¹Na"] },
+            { Z: 12, name: "Magnezyum", symbol: "Mg", isotopes: ["¹⁹Mg", "²⁰Mg", "²¹Mg", "²²Mg", "²³Mg", "²⁴Mg", "²⁵Mg", "²⁶Mg", "²⁷Mg", "²⁸Mg", "²⁹Mg", "³⁰Mg", "³¹Mg", "³²Mg", "³³Mg", "³⁴Mg", "³⁵Mg", "³⁶Mg"] },
+            { Z: 13, name: "Alüminyum", symbol: "Al", isotopes: ["²¹Al", "²²Al", "²³Al", "²⁴Al", "²⁵Al", "²⁶Al", "²⁷Al", "²⁸Al", "²⁹Al", "³⁰Al", "³¹Al", "³²Al", "³³Al", "³⁴Al", "³⁵Al"] },
+            { Z: 14, name: "Silisyum", symbol: "Si", isotopes: ["²²Si", "²³Si", "²⁴Si", "²⁵Si", "²⁶Si", "²⁷Si", "²⁸Si", "²⁹Si", "³⁰Si", "³¹Si", "³²Si", "³³Si", "³⁴Si", "³⁵Si", "³⁶Si", "³⁷Si", "³⁸Si", "³⁹Si", "⁴⁰Si", "⁴¹Si", "⁴²Si", "⁴³Si", "⁴⁴Si"] },
+            { Z: 15, name: "Fosfor", symbol: "P", isotopes: ["²⁴P", "²⁵P", "²⁶P", "²⁷P", "²⁸P", "²⁹P", "³⁰P", "³¹P", "³²P", "³³P", "³⁴P", "³⁵P", "³⁶P", "³⁷P", "³⁸P", "³⁹P", "⁴⁰P"] },
+            { Z: 16, name: "Kükürt", symbol: "S", isotopes: ["²⁷S", "²⁸S", "²⁹S", "³⁰S", "³¹S", "³²S", "³³S", "³⁴S", "³⁵S", "³⁶S", "³⁷S", "³⁸S", "³⁹S", "⁴⁰S", "⁴¹S", "⁴²S", "⁴³S", "⁴⁴S", "⁴⁵S", "⁴⁶S", "⁴⁷S", "⁴⁸S", "⁴⁹S", "⁵⁰S"] },
+            { Z: 17, name: "Klor", symbol: "Cl", isotopes: ["²⁸Cl", "²⁹Cl", "³⁰Cl", "³¹Cl", "³²Cl", "³³Cl", "³⁴Cl", "³⁵Cl", "³⁶Cl", "³⁷Cl", "³⁸Cl", "³⁹Cl", "⁴⁰Cl", "⁴¹Cl", "⁴²Cl", "⁴³Cl", "⁴⁴Cl", "⁴⁵Cl", "⁴⁶Cl", "⁴⁷Cl", "⁴⁸Cl", "⁴⁹Cl", "⁵⁰Cl", "⁵¹Cl", "⁵²Cl"] },
+            { Z: 18, name: "Argon", symbol: "Ar", isotopes: ["³⁰Ar", "³¹Ar", "³²Ar", "³³Ar", "³⁴Ar", "³⁵Ar", "³⁶Ar", "³⁷Ar", "³⁸Ar", "³⁹Ar", "⁴⁰Ar", "⁴¹Ar", "⁴²Ar", "⁴³Ar", "⁴⁴Ar", "⁴⁵Ar", "⁴⁶Ar", "⁴⁷Ar", "⁴⁸Ar", "⁴⁹Ar", "⁵⁰Ar", "⁵¹Ar", "⁵²Ar", "⁵³Ar", "⁵⁴Ar"] },
+            { Z: 19, name: "Potasyum", symbol: "K", isotopes: ["³¹K", "³²K", "³³K", "³⁴K", "³⁵K", "³⁶K", "³⁷K", "³⁸K", "³⁹K", "⁴⁰K", "⁴¹K", "⁴²K", "⁴³K", "⁴⁴K", "⁴⁵K", "⁴⁶K", "⁴⁷K", "⁴⁸K", "⁴⁹K", "⁵⁰K", "⁵¹K", "⁵²K", "⁵³K", "⁵⁴K", "⁵⁵K", "⁵⁶K", "⁵⁷K", "⁵⁸K", "⁵⁹K", "⁶⁰K"] },
+            { Z: 20, name: "Kalsiyum", symbol: "Ca", isotopes: ["³⁵Ca", "³⁶Ca", "³⁷Ca", "³⁸Ca", "³⁹Ca", "⁴⁰Ca", "⁴¹Ca", "⁴²Ca", "⁴³Ca", "⁴⁴Ca", "⁴⁵Ca", "⁴⁶Ca", "⁴⁷Ca", "⁴⁸Ca", "⁴⁹Ca", "⁵⁰Ca", "⁵¹Ca", "⁵²Ca", "⁵³Ca", "⁵⁴Ca", "⁵⁵Ca", "⁵⁶Ca", "⁵⁷Ca", "⁵⁸Ca", "⁵⁹Ca", "⁶⁰Ca"] }
+        ];
+
+        const elementListEl = document.getElementById('element-list');
+        const detailContentEl = document.getElementById('detail-content');
+        let currentActiveElement = null;
+
+        /**
+         * Element listesini oluşturur ve olay dinleyicilerini ekler.
+         */
+        function renderElementList() {
+            elementsData.forEach(element => {
+                const button = document.createElement('button');
+                button.className = 'w-full text-left p-3 rounded-lg transition duration-200 ease-in-out ' +
+                                   'bg-gray-700 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 ' +
+                                   'flex items-center justify-between text-lg shadow-md element-item';
+                button.setAttribute('data-z', element.Z);
+
+                button.innerHTML = `
+                    <span class="text-indigo-300 font-medium">${element.Z}.</span>
+                    <span class="font-bold text-white text-xl">${element.symbol}</span>
+                    <span class="text-gray-300 ml-2">${element.name}</span>
+                `;
+
+                // Tıklama olay dinleyicisi ekle
+                button.addEventListener('click', () => showElementDetails(element));
+
+                elementListEl.appendChild(button);
+            });
+        }
+
+        /**
+         * Detay panelini seçilen elementin bilgileriyle doldurur.
+         * @param {Object} element - Seçilen elementin veri objesi.
+         */
+        function showElementDetails(element) {
+            // Aktif öğeyi güncelle ve stilini ayarla
+            if (currentActiveElement) {
+                currentActiveElement.classList.remove('bg-indigo-500', 'hover:bg-indigo-600', 'text-white');
+                currentActiveElement.classList.add('bg-gray-700', 'hover:bg-indigo-600', 'text-gray-100');
+            }
+
+            const newActiveElement = document.querySelector(`.element-item[data-z="${element.Z}"]`);
+            newActiveElement.classList.remove('bg-gray-700', 'hover:bg-indigo-600', 'text-gray-100');
+            newActiveElement.classList.add('bg-indigo-500', 'hover:bg-indigo-500', 'text-white');
+            currentActiveElement = newActiveElement;
+
+            // İzotop listesini dinamik olarak oluştur
+            const isotopesHtml = element.isotopes.map(iso => `
+                <span class="inline-block bg-indigo-900/50 text-indigo-200 text-sm font-medium px-3 py-1 rounded-full m-1 transition duration-150 hover:bg-indigo-700 hover:scale-105 shadow-lg">
+                    ${iso}
+                </span>
+            `).join('');
+
+            // Detay içeriği HTML'ini oluştur
+            detailContentEl.innerHTML = `
+                <div class="space-y-6">
+                    <!-- Element Başlığı -->
+                    <div class="flex items-center space-x-4 border-b border-gray-700 pb-4">
+                        <span class="text-6xl sm:text-8xl font-black text-indigo-400 leading-none">${element.symbol}</span>
+                        <div>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-white">${element.name}</h2>
+                            <p class="text-xl text-gray-400">Atom Numarası (Z): ${element.Z}</p>
+                        </div>
+                    </div>
+
+                    <!-- İzotop Bilgisi -->
+                    <h3 class="text-2xl font-semibold text-gray-200 mt-6">Bilinen İzotopları (${element.isotopes.length} Adet)</h3>
+                    
+                    <div class="flex flex-wrap p-4 bg-gray-900/50 rounded-lg shadow-inner max-h-96 overflow-y-auto">
+                        ${isotopesHtml}
+                    </div>
+                    
+                    <p class="text-sm text-gray-500 mt-4">
+                        Not: Listelenen izotoplar, bilinen kararlı ve radyoaktif türlerin tamamını içermektedir.
+                    </p>
+                </div>
+            `;
+        }
+
+        // Sayfa yüklendiğinde listeyi render et
+        window.onload = () => {
+            renderElementList();
+            // Sayfa yüklendiğinde varsayılan olarak Hidrojen'i göster
+            showElementDetails(elementsData[0]);
+        };
+    </script>
+</body>
 </html>
