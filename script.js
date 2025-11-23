@@ -269,6 +269,10 @@ function goToPage3() {
     window.location.href = "isotopes.html"; // Ensure isotopes.html exists or update this path
 }
 
+function goToPage4() {
+    window.location.href = "substances.html";
+}
+
 // Sticky ad close functionality
 const closeStickyAdButtonTop = document.getElementById('close-sticky-ad-top');
 const stickyAdTop = document.getElementById('sticky-ad-top');
