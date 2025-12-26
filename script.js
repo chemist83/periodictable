@@ -270,7 +270,7 @@ function goToPage3() {
 }
 
 function goToPage4() {
-    window.location.href = "substances.html";
+    window.location.href = "https://chemist83.github.io/substances-/";
 }
 
 // Sticky ad close functionality
