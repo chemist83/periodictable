@@ -272,6 +272,9 @@ function goToPage3() {
 function goToPage4() {
     window.location.href = "https://chemist83.github.io/substances-/";
 }
+function goToPage5() {
+    window.location.href = "https://chemist83.github.io/orbital3d/";
+}
 
 // Sticky ad close functionality
 const closeStickyAdButtonTop = document.getElementById('close-sticky-ad-top');
