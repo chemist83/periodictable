@@ -276,7 +276,7 @@ function goToPage5() {
     window.location.href = "https://chemist83.github.io/orbital3d/";
 }
 function goToPage6() {
-    window.location.href = "https://chemist83.github.io/geomap/?fbclid=PAZXh0bgNhZW0CMTEAAacdyoJLNPRk451LCzyf-6fsvamFsY_ZDm7JnMJgHgdSGDEzm7dAHnfKCmOYHQ_aem_agkTRlSGyEFSwvOxNXuQ6g";
+    window.location.href = "https://chemist83.github.io/geomap/";
 }
 
 // Sticky ad close functionality
