@@ -278,6 +278,16 @@ function goToPage5() {
 function goToPage6() {
     window.location.href = "https://chemist83.github.io/geomap/";
 }
+function goToPage7() {
+    window.location.href = "https://armanulabreunis-max.github.io/radioPhyactive1995/";
+}
+function goToPage8() {
+    window.location.href = "https://armanulabreunis-max.github.io/chemlabUS1/";
+}
+function goToPage9() {
+    window.location.href = "https://armanulabreunis-max.github.io/periodictableisotopes817/";
+}
+
 
 // Sticky ad close functionality
 const closeStickyAdButtonTop = document.getElementById('close-sticky-ad-top');
