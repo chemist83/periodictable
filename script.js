@@ -287,6 +287,9 @@ function goToPage8() {
 function goToPage9() {
     window.location.href = "https://armanulabreunis-max.github.io/periodictableisotopes817/";
 }
+function goToPage9() {
+    window.location.href = "https://chemist83.github.io/ww2time91ADK/";
+}
 
 
 // Sticky ad close functionality
